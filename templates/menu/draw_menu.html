@@ -1,0 +1,16 @@
+<ul>
+    {% for node in menu %}
+        <li class="{% if node.active %}active{% endif %}">
+            <a href="{% if node.item.url %}{{ node.item.url }}{% else %}{% url node.item.named_url %}{% endif %}">{{ node.item.name }}</a>
+            {% if node.children %}
+                <ul>
+                    {% for child in node.children %}
+                        <li class="{% if child.active %}active{% endif %}">
+                            <a href="{% if child.item.url %}{{ child.item.url }}{% else %}{% url child.item.named_url %}{% endif %}">{{ child.item.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
